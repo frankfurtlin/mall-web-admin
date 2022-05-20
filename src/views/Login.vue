@@ -62,14 +62,17 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          let myParams = new URLSearchParams();
-          myParams.append("username", this.ruleForm.username);
-          myParams.append("password", this.ruleForm.password);
+          // let myParams = new URLSearchParams();
+          // myParams.append("username", this.ruleForm.username);
+          // myParams.append("password", this.ruleForm.password);
 
-          let res = this.$api.post("/user/backLogin", myParams, {
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          // let res = this.$api.post("/user/backLogin", myParams, {
+          //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          // });
+          this.$api.user.login(this.ruleForm).then((res) => {
+            sessionStorage.setItem('user', JSON.stringify(res.data.data))
+            this.$router.push('/')
           });
-          console.log(res);
         } else {
           console.log("error submit!!");
           return false;

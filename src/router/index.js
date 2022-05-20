@@ -29,7 +29,7 @@ router.beforeEach((to, from, next) => {
   // to 将要访问的路径  from 从哪个路径跳转过来  next 一个函数，表示放行
   if (to.path === '/login') return next()
   // 获取token
-  const tokenStr = sessionStorage.getItem('token')
+  const tokenStr = sessionStorage.getItem('user')
   if (!tokenStr) return next('/login')
   next()
 })

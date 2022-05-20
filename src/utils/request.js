@@ -1,8 +1,5 @@
 import axios from 'axios'
 
-//配置默认的路由地址头
-axios.defaults.baseURL = 'http://localhost:8081/mall'
-
 //全局添加拦截器的作用是可以在每个api前面加上headers的token验证
 axios.interceptors.request.use(config => {
   // 判断token是否存在和是否需要token验证的路由
@@ -24,5 +21,9 @@ axios.interceptors.response.use(config => {
         return Promise.reject(err)
     }
 })
+
+const request = axios.create({
+  baseURL: 'http://localhost:8081/mall'
+})
   
-export default axios
+export default request
